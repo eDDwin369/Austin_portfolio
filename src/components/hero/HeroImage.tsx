@@ -65,42 +65,7 @@ export function HeroImage() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
       </motion.div>
 
-      {/* Floating Accent Dot (upper-left near collar, matches reference) */}
-      <motion.div
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 0.6, duration: 0.5, type: "spring" }}
-        className="absolute top-[28%] left-[6%] sm:left-[12%] md:left-[14%] w-3.5 h-3.5 rounded-full bg-indigo-600 shadow-lg shadow-indigo-500/50 z-20 pointer-events-none"
-      />
 
-      {/* Floating Circular 'Hi' Interaction Badge (matches reference) */}
-      <motion.div
-        initial={{ scale: 0, opacity: 0, rotate: -25 }}
-        animate={{ scale: 1, opacity: 1, rotate: 0 }}
-        transition={{ delay: 0.5, duration: 0.7, type: "spring", stiffness: 220 }}
-        whileHover={{ scale: 1.12, rotate: 10 }}
-        whileTap={{ scale: 0.95 }}
-        className="absolute bottom-4 sm:bottom-6 left-[8%] sm:left-[14%] md:left-[16%] z-20 cursor-pointer"
-      >
-        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-indigo-600 dark:bg-indigo-500 text-white flex items-center justify-center shadow-xl shadow-indigo-600/40 border-2 border-white dark:border-neutral-900 transition-all duration-300">
-          <motion.span
-            animate={{
-              rotate: [0, 14, -10, 14, 0],
-            }}
-            transition={{
-              duration: 2.5,
-              repeat: Infinity,
-              repeatType: "loop",
-              ease: "easeInOut",
-            }}
-            className="text-2xl sm:text-3xl select-none"
-            role="img"
-            aria-label="Waving hand greeting"
-          >
-            👋
-          </motion.span>
-        </div>
-      </motion.div>
 
       {/* Secondary Floating Experience Badge */}
       <motion.div
