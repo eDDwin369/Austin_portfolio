@@ -19,6 +19,7 @@ const navLinks: NavLink[] = [
   { name: "About", href: "/#about" },
   { name: "Projects", href: "/#projects" },
   { name: "Experience", href: "/#experience" },
+  { name: "Testimonials", href: "/#testimonials" },
 ];
 
 export function Navbar() {
@@ -37,7 +38,7 @@ export function Navbar() {
 
       // Detect active section on home page
       if (pathname === "/") {
-        const sections = ["experience", "projects", "about"];
+        const sections = ["contact", "education", "testimonials", "experience", "projects", "about"];
         let current = "Home";
         for (const sec of sections) {
           const el = document.getElementById(sec);

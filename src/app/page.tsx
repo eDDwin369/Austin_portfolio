@@ -3,6 +3,7 @@ import { ProjectGrid } from "@/components/projects/ProjectGrid";
 import { About } from "@/components/sections/About";
 import { Experience } from "@/components/sections/Experience";
 import { Testimonials } from "@/components/sections/Testimonials";
+import { Education } from "@/components/sections/Education";
 import { Contact } from "@/components/sections/Contact";
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
       <About />
       <Experience />
       <Testimonials />
+      <Education />
       <Contact />
     </>
   );

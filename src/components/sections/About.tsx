@@ -5,10 +5,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { statsList, skillCategories, toolsList } from "@/data/skills";
-import { ArrowUpRight, Phone, Mail, Award, CheckCircle2, Sparkles, BookOpen } from "lucide-react";
+import { certificationsList } from "@/data/certifications";
+import { ArrowUpRight, Phone, Mail, Award, CheckCircle2, Sparkles, BookOpen, Calendar } from "lucide-react";
 
 export function About() {
-  const [activeTab, setActiveTab] = useState<"skills" | "tools">("skills");
+  const [activeTab, setActiveTab] = useState<"skills" | "tools" | "certifications">("skills");
   const [storyOpen, setStoryOpen] = useState(false);
 
   return (
@@ -181,10 +182,10 @@ export function About() {
               </h3>
             </div>
 
-            <div className="inline-flex p-1 rounded-full bg-neutral-200/80 dark:bg-neutral-800/80">
+            <div className="inline-flex p-1 rounded-full bg-neutral-200/80 dark:bg-neutral-800/80 overflow-x-auto max-w-full">
               <button
                 onClick={() => setActiveTab("skills")}
-                className={`px-5 py-1.5 rounded-full text-xs font-semibold tracking-tight transition-all duration-200 cursor-pointer ${
+                className={`px-4 sm:px-5 py-1.5 rounded-full text-xs font-semibold tracking-tight transition-all duration-200 cursor-pointer whitespace-nowrap ${
                   activeTab === "skills"
                     ? "bg-white dark:bg-neutral-950 text-neutral-950 dark:text-white shadow-sm"
                     : "text-neutral-600 dark:text-neutral-400"
@@ -194,13 +195,32 @@ export function About() {
               </button>
               <button
                 onClick={() => setActiveTab("tools")}
-                className={`px-5 py-1.5 rounded-full text-xs font-semibold tracking-tight transition-all duration-200 cursor-pointer ${
+                className={`px-4 sm:px-5 py-1.5 rounded-full text-xs font-semibold tracking-tight transition-all duration-200 cursor-pointer whitespace-nowrap ${
                   activeTab === "tools"
                     ? "bg-white dark:bg-neutral-950 text-neutral-950 dark:text-white shadow-sm"
                     : "text-neutral-600 dark:text-neutral-400"
                 }`}
               >
                 Tools & Software
+              </button>
+              <button
+                onClick={() => setActiveTab("certifications")}
+                className={`px-4 sm:px-5 py-1.5 rounded-full text-xs font-semibold tracking-tight transition-all duration-200 cursor-pointer flex items-center gap-1.5 whitespace-nowrap ${
+                  activeTab === "certifications"
+                    ? "bg-white dark:bg-neutral-950 text-neutral-950 dark:text-white shadow-sm"
+                    : "text-neutral-600 dark:text-neutral-400"
+                }`}
+              >
+                <span>Certifications</span>
+                <span
+                  className={`text-[10px] px-1.5 py-0.5 rounded-full font-mono font-medium ${
+                    activeTab === "certifications"
+                      ? "bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400"
+                      : "bg-neutral-300 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300"
+                  }`}
+                >
+                  8
+                </span>
               </button>
             </div>
           </div>
@@ -235,7 +255,7 @@ export function About() {
                 </div>
               ))}
             </div>
-          ) : (
+          ) : activeTab === "tools" ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {toolsList.map((tool) => (
                 <div
@@ -265,6 +285,63 @@ export function About() {
                       style={{ width: `${tool.proficiency}%` }}
                     />
                   </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {certificationsList.map((cert, idx) => (
+                <div
+                  key={cert.id}
+                  className="p-6 sm:p-7 rounded-3xl glass-card flex flex-col justify-between relative overflow-hidden group hover:border-indigo-500/50 transition-all duration-300"
+                >
+                  <div>
+                    <div className="flex items-center justify-between gap-3 mb-3">
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-xs text-indigo-600 dark:text-indigo-400 font-semibold">
+                          0{idx + 1} /
+                        </span>
+                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-wide uppercase bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-900/40">
+                          {cert.category}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-xs font-mono text-neutral-500 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-800/80 px-2.5 py-1 rounded-full shrink-0">
+                        <Calendar className="w-3 h-3 text-indigo-500" />
+                        <span>{cert.issueDate}</span>
+                      </div>
+                    </div>
+
+                    <h4 className="text-lg sm:text-xl font-bold text-neutral-900 dark:text-neutral-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors leading-snug">
+                      {cert.title}
+                    </h4>
+
+                    <div className="flex items-center gap-2 mt-2 text-xs font-medium text-neutral-700 dark:text-neutral-300">
+                      <Award className="w-4 h-4 text-amber-500 shrink-0" />
+                      <span>{cert.issuer}</span>
+                    </div>
+
+                    {cert.description && (
+                      <p className="mt-3 text-xs text-neutral-600 dark:text-neutral-400 font-light leading-relaxed">
+                        {cert.description}
+                      </p>
+                    )}
+                  </div>
+
+                  {cert.skills && cert.skills.length > 0 && (
+                    <div className="mt-5 pt-4 border-t border-neutral-200/60 dark:border-neutral-800/60 flex flex-wrap gap-1.5 items-center">
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-400 mr-1">
+                        Skills:
+                      </span>
+                      {cert.skills.map((skill) => (
+                        <span
+                          key={skill}
+                          className="px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-neutral-100 dark:bg-neutral-800/60 text-neutral-700 dark:text-neutral-300"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>

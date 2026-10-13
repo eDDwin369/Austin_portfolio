@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 import { About } from "@/components/sections/About";
 import { Experience } from "@/components/sections/Experience";
+import { Testimonials } from "@/components/sections/Testimonials";
+import { Education } from "@/components/sections/Education";
 
 export const metadata: Metadata = {
   title: "About Austin Paul — Software Engineer",
@@ -13,6 +15,8 @@ export default function AboutPage() {
     <div className="pt-20">
       <About />
       <Experience />
+      <Testimonials />
+      <Education />
     </div>
   );
 }

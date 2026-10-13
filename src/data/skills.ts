@@ -66,6 +66,10 @@ export const toolsList: ToolItem[] = [
 export const statsList = [
   { value: "8+", label: "Years Experience", description: "Demonstrated career track record across engineering and operations" },
   { value: "5", label: "Companies", description: "Reply, Triaxia Infotech, Descpro Technologies, Turbosoft & Future Group" },
+  { value: "8", label: "Certifications", description: "Industry credentials across AWS Cloud, AI Security, Java, SAFe & Web Design" },
   { value: "3", label: "Languages", description: "Multilingual communication in English, Malayalam, and Tamil" },
   { value: "B.E.", label: "Engineering Degree", description: "Computer Science & Engineering graduate (Hindustan Institute of Technology)" }
 ];
+
+export { certificationsList, type CertificationItem } from "./certifications";
+
